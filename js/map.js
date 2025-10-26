@@ -14,7 +14,7 @@ if (savedLocation) {
 
   // Custom pigeon icon
   const pigeonIcon = L.icon({
-    iconUrl: "assets/pigeon.png",
+    iconUrl: "assets/pigeonIcon.png",
     iconSize: [40, 40],
     iconAnchor: [20, 20],
     popupAnchor: [0, -10],
@@ -23,11 +23,12 @@ if (savedLocation) {
   // Add marker
   L.marker([latitude, longitude], { icon: pigeonIcon })
     .addTo(map)
-    .bindPopup("pigeon pigeon pigeon")
+    .bindPopup("coo")
     .openPopup();
 
   // Center map on user
   map.setView([latitude, longitude], 15);
+  console.log('Latitude:', latitude, 'Longitude', longitude, "using main file");
 } else {
   // No location data
   alert("No location data found. Please go back and allow access.");

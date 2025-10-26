@@ -4,15 +4,13 @@ import { ref, push } from 'https://www.gstatic.com/firebasejs/12.4.0/firebase-da
 const consentBtn = document.getElementById("consentBtn");
 const statusText = document.getElementById("status");
 
-console.log('using main file');
-
 consentBtn.addEventListener("click", () => {
   if (!navigator.geolocation) {
     statusText.textContent = "Geolocation not supported by your browser.";
     return;
   }
 
-  statusText.textContent = "Locating you... USING MAIN FILE";
+  statusText.textContent = "Locating you... PUBLIC FILE";
 
   navigator.geolocation.getCurrentPosition(
     async (position) => {
@@ -24,8 +22,9 @@ consentBtn.addEventListener("click", () => {
       try {
         // Push to Firebase Realtime Database under `locations/`
         const locationsRef = ref(db, 'locations');
-        await push(locationsRef, { latitude, longitude });
+        await push(locationsRef, { latitude, longitude, timestamp });
         console.log('location saved to firebase', { latitude, longitude });
+        console.log(data.val());
       } catch (err) {
         console.error('Failed to save location to Firebase:', err);
       }
@@ -37,4 +36,5 @@ consentBtn.addEventListener("click", () => {
       statusText.textContent = "Location permission denied or unavailable.";
     }
   );
+
 });
