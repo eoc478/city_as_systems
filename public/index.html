@@ -3,20 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pigeon Map — City as System</title>
+  <title>pigeon perch</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <div class="navbar">
+    <a href="index.html">home</a>
+    <a href="map.html">map</a>
+  </div>
   <div class="container">
-    <h1>Pigeon Map</h1>
+    <h1>pigeon perch</h1>
     <p>
-      This project explores pigeons as a living system of the city — tracing
-      their presence as reflections of human movement and urban rhythm.
+      Hello. This a student project exploring New York City as a system. I have created this website because I am curious to see how many people scan these QR codes. 
     </p>
     <p>
-      By continuing, you agree to share your location so your “pigeon” can
-      appear on the map of New York City. No personal data is stored.
+      By pressing the "Continue" button below, you are agreeing to share your location so that you will mark your spot on the map as a pigeon. No other data is stored and I literally do not plan to use this for anything else. This is solely a school project for my class. Choose your pigeon below to whichever speaks to you the most!
     </p>
+    <div class="pigeonPicker">
+      <label>
+        <input type="radio" id="classicPigeon" name="pigeonType" value="classic">
+        <img src="assets/pigeonIcon.png" alt="Classic Pigeon"/> Classic Pigeon 
+      </label>
+      <label>
+         <input type="radio" id="brownPigeon" name="pigeonType" value="brown">
+        <img src="assets/pigeonIcon-brown.png" alt="Classic Pigeon"/> Brown Pigeon 
+      </label>
+      <label>
+        <input type="radio" id="blackPigeon" name="pigeonType" value="black">
+        <img src="assets/pigeonIcon-black.png" alt="Classic Pigeon"/> Black Pigeon 
+      </label>
+      <label>
+        <input type="radio" id="wtfPigeon" name="pigeonType" value="wtf">
+        <img src="assets/pigeonIcon-wtf.png" alt="Classic Pigeon"/> WTF Pigeon 
+      </label>
+
+      <p>write a message!</p>
+      <input type="text" id="pigeonName" name="pigeonName" placeholder="coo!" maxlength="150">
+    </div>
+
     <button id="consentBtn">Continue</button>
     <p id="status"></p>
   </div>

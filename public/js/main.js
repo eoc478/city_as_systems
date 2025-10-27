@@ -3,14 +3,37 @@ import { ref, push } from 'https://www.gstatic.com/firebasejs/12.4.0/firebase-da
 
 const consentBtn = document.getElementById("consentBtn");
 const statusText = document.getElementById("status");
+ 
 
 consentBtn.addEventListener("click", () => {
+  const selectedRadio = document.querySelector('input[name="pigeonType"]:checked');
+  const pigeonName = document.getElementById("pigeonName").value.trim();
+  
+  if (!selectedRadio) {
+    statusText.textContent = "Please select a pigeon type first!";
+    return;
+  }
+
+  if (!pigeonName) {
+    alert("Please name your pigeon!");
+    return;
+  }
+  
+  const selectedPigeon = selectedRadio.value;
+  console.log('Selected pigeon type:', selectedPigeon);
+  
+  if (!['classic', 'brown', 'black', 'wtf'].includes(selectedPigeon)) {
+    console.error('Invalid pigeon type selected:', selectedPigeon);
+    statusText.textContent = "Invalid pigeon type. Please try again.";
+    return;
+  }
+
   if (!navigator.geolocation) {
     statusText.textContent = "Geolocation not supported by your browser.";
     return;
   }
 
-  statusText.textContent = "Locating you... PUBLIC FILE";
+  statusText.textContent = "perching...";
 
   navigator.geolocation.getCurrentPosition(
     async (position) => {
@@ -18,13 +41,24 @@ consentBtn.addEventListener("click", () => {
 
       // Save to localStorage for immediate client use
       localStorage.setItem("userLocation", JSON.stringify({ latitude, longitude }));
+      localStorage.setItem("userPigeon", selectedPigeon);
+      localStorage.setItem("pigeonName", pigeonName);
+
 
       try {
         // Push to Firebase Realtime Database under `locations/`
         const locationsRef = ref(db, 'locations');
-        await push(locationsRef, { latitude, longitude, timestamp });
-        console.log('location saved to firebase', { latitude, longitude });
-        console.log(data.val());
+        const dataToSave = {
+          latitude,
+          longitude,
+          pigeonType: selectedPigeon,
+          pigeonName: pigeonName
+        };
+        await push(locationsRef, dataToSave);
+        console.log('About to save to Firebase:', dataToSave);
+        
+        // Verify what was saved
+        console.log('Successfully saved to Firebase with pigeon type:', selectedPigeon);
       } catch (err) {
         console.error('Failed to save location to Firebase:', err);
       }

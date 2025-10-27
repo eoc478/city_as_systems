@@ -2,18 +2,77 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: "IBM Plex Sans", sans-serif;
-  background: #d9973a;
+  background: #767cbe;
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   max-width: 400px;
-  margin: 60px auto;
+  margin: 10px auto;
   padding: 20px;
   text-align: center;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
+
+.navbar{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.pigeonPicker {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  justify-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.pigeonPicker input[type="radio"] {
+  display: none;
+}
+
+/* Style each label (the clickable box) */
+.pigeonPicker label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #f3f3f3; */
+  border-radius: 15px;
+  padding: 10px;
+  width: 120px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+}
+
+/* Pigeon image styling */
+.pigeonPicker img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+/* Highlight when selected */
+.pigeonPicker input[type="radio"]:checked + img,
+.pigeonPicker label.selected {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px #555);
+}
+
+/* Optional hover effect */
+.pigeonPicker label:hover {
+  background-color: #e7e7e7;
+}
+
 
 #map {
   height: 100vh;
