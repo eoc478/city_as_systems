@@ -20,7 +20,7 @@ consentBtn.addEventListener("click", () => {
   }
   
   const selectedPigeon = selectedRadio.value;
-  console.log('Selected pigeon type:', selectedPigeon);
+  // console.log('Selected pigeon type:', selectedPigeon);
   
   if (!['classic', 'brown', 'black', 'wtf'].includes(selectedPigeon)) {
     console.error('Invalid pigeon type selected:', selectedPigeon);

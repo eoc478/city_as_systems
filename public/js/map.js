@@ -70,7 +70,7 @@ onValue(locationsRef, (snapshot) => {
       
       // Use the saved pigeon type or fallback to classic
       const icon = pigeonIcons[pigeonType] || pigeonIcons.classic;
-      console.log(`Using icon for type: ${pigeonType}`, icon);
+      // console.log(`Using icon for type: ${pigeonType}`, icon);
       
       L.marker([latitude, longitude], { icon })
         .addTo(map)
